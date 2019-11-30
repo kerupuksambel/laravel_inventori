@@ -1,0 +1,18 @@
+aside#sidebar {
+  margin-top: 72px;
+  padding-left: 40px;
+}
+
+.container {
+  margin-top: 72px;
+  padding: 12px 40px;
+}
+
+.control.has-icons-left span.icon {
+  width: 3.5em;
+}
+.control.has-icons-left input.input {
+  padding-left: 3.5em;
+}
+
+/*# sourceMappingURL=style.css.map */

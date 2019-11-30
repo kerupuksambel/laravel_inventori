@@ -16,9 +16,16 @@ class Admin
     public function handle($request, Closure $next)
     {
         // dd(Auth::user());
-        if (Auth::user()->user_role == 'admin') {
-            return $next($request);
+        if(!is_null(Auth::user())){
+            if (Auth::user()->user_role == 'karyawan') {
+                return redirect('karyawan');
+            }else if(Auth::user()->user_role == 'admin'){
+                return $next($request);
+            }else if(Auth::user()->user_role == 'owner'){
+                return redirect('owner');
+            }
+        }else{
+            return redirect('login');
         }
-        return redirect('/');
     }
 }

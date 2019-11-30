@@ -9,8 +9,14 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <div class="container">
-        @yield('content')
+    @include('template.partial.navbar')
+    <div class="columns">
+        @include('template.partial.sidebar')
+        <div class="container column is-three-quarter">
+            @yield('content')
+        </div>
     </div>
 </body>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 </html>

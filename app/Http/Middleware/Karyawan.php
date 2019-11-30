@@ -16,9 +16,16 @@ class Karyawan
     public function handle($request, Closure $next)
     {
         // dd(Auth::user());
-        if (Auth::user()->user_role == 'karyawan') {
-            return $next($request);
+        if(!is_null(Auth::user())){
+            if (Auth::user()->user_role == 'karyawan') {
+                return $next($request);
+            }else if(Auth::user()->user_role == 'admin'){
+                return redirect('admin');
+            }else if(Auth::user()->user_role == 'owner'){
+                return redirect('owner');
+            }
+        }else{
+            return redirect('login');
         }
-        return redirect('/');
     }
 }

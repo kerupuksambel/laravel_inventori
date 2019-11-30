@@ -36,18 +36,30 @@ Auth::routes();
 
 Route::prefix('owner')->middleware('isOwner')->group(function()
 {
-    Route::get('/','OwnerController@dashboard');
+    Route::get('/','AdminController@dashboard');
     Route::get('/barang/view', 'BarangController@view');
+    
     Route::get('/barang/add', 'BarangController@create');
     Route::post('/barang/add/post', 'BarangController@create_post');
+
+    Route::get('/barang/edit/{id}', 'BarangController@edit');
+    Route::post('/barang/edit/post/{id}', 'BarangController@edit_post');
+
+    Route::get('/barang/delete/{id}', 'BarangController@delete_post');
 });
 
 Route::prefix('admin')->middleware('isAdmin')->group(function()
 {
     Route::get('/','AdminController@dashboard');
     Route::get('/barang/view', 'BarangController@view');
+    
     Route::get('/barang/add', 'BarangController@create');
     Route::post('/barang/add/post', 'BarangController@create_post');
+
+    Route::get('/barang/edit/{id}', 'BarangController@edit');
+    Route::post('/barang/edit/post/{id}', 'BarangController@edit_post');
+
+    Route::get('/barang/delete/{id}', 'BarangController@delete_post');
 });
 
 Route::prefix('karyawan')->middleware('isKaryawan')->group(function()

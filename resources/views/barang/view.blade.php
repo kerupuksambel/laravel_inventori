@@ -13,7 +13,7 @@
                 <th>Nama Barang</th>
                 <th>Harga Barang</th>
                 <th>Stok Barang</th>
-                {{-- <th>Pembuat Barang</th> --}}
+                <th>Gambar Barang</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -24,7 +24,11 @@
                 <td>{{ $record->barang_nama }}</td>
                 <td>Rp. {{ number_format($record->barang_harga,2,',','.') }}</td>
                 <td>{{ $record->barang_stok }}</td>
-                {{-- <td>{{ $record->barang_creator_name }}</td> --}}
+                <td>
+                    @foreach ($record->gambar as $r)
+                        <img src="{{ $r['gambar_path'] }}"/>
+                    @endforeach
+                </td>
                 <td><a href='edit/{{ $record->barang_id }}'>Edit</a> | <a href='delete/{{ $record->barang_id }}'>Hapus</a></td>
             </tr>
             @endforeach

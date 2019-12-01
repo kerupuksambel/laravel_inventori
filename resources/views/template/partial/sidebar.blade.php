@@ -11,7 +11,8 @@
             Transaksi
         </p>
         <ul class="menu-list">
-            <li><a @if (isset($page_now) && $page_now == 'stok') class='is-active' @endif href="/owner/stok/">Stok Barang</a></li>
+            <li><a @if (isset($page_now) && $page_now == 'stok') class='is-active' @endif href="/owner/stok/">Tambah Stok Barang</a></li>
+            <li><a @if (isset($page_now) && $page_now == 'kasir') class='is-active' @endif href="/owner/kasir">Input Transaksi Pelanggan</a></li>
             {{-- <li><a>Kasir</a></li> --}}
         </ul>
     @endif
@@ -28,7 +29,8 @@
             Transaksi
         </p>
         <ul class="menu-list">
-            <li><a @if (isset($page_now) && $page_now == 'stok') class='is-active' @endif href="/admin/stok">Stok Barang</a></li>
+            <li><a @if (isset($page_now) && $page_now == 'stok') class='is-active' @endif href="/admin/stok">Tambah Stok Barang</a></li>
+            <li><a @if (isset($page_now) && $page_now == 'kasir') class='is-active' @endif href="/admin/kasir">Input Transaksi Pelanggan</a></li>
             {{-- <li><a>Kasir</a></li> --}}
         </ul>
     @endif
@@ -38,7 +40,8 @@
             Transaksi
         </p>
         <ul class="menu-list">
-            <li><a @if (isset($page_now) && $page_now == 'stok') class='is-active' @endif href="/karyawan/stok">Stok Barang</a></li>
+            <li><a @if (isset($page_now) && $page_now == 'stok') class='is-active' @endif href="/karyawan/stok">Tambah Stok Barang</a></li>
+            <li><a @if (isset($page_now) && $page_now == 'kasir') class='is-active' @endif href="/karyawan/kasir">Input Transaksi Pelanggan</a></li>
             {{-- <li><a>Kasir</a></li> --}}
         </ul>
     @endif

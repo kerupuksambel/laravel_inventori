@@ -27,8 +27,11 @@ Route::get('/')->middleware(['isOwner', 'isAdmin', 'isKaryawan']);
 // );
 
 // Route::get('/navbar', function () {
-//     return view('layouts.navbar');
-// });
+    //     return view('layouts.navbar');
+    // });
+//For AJAX Request
+Route::get('/kasir/ajax', 'KasirController@ajax_result');
+Route::get('/kasir/ajax_search', 'KasirController@ajax_search');
 
 Auth::routes();
 
@@ -64,7 +67,8 @@ Route::prefix('admin')->middleware('isAdmin')->group(function()
     Route::get('/stok', 'StokController@view');
     Route::post('/stok/post', 'StokController@add');
 
-    // Route::get('/kasir', 'KasirController@view');
+    Route::get('/kasir', 'KasirController@view');
+    Route::post('/kasir/post', 'KasirController@kasir_post');
 });
 
 Route::prefix('karyawan')->middleware('isKaryawan')->group(function()

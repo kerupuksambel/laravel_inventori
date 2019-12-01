@@ -16,10 +16,9 @@ class BarangController extends Controller
     {
         $data = Barang::all();
         $page_now = 'barang/view';
+
         foreach($data as $key => $record){
-            $num = $data[$key]->barang_creator_id;
-            // $data[$key]->barang_creator_name = Barang::find($num)->barang_creator_name;
-            $data[$key]->barang_creator_name = '-';
+            $data[$key]->gambar = FileBarang::where('gambar_barang_id', $record->barang_id)->select('gambar_path')->get();
         }
 
         return view('barang.view', ['data' => $data, 'page_now' => $page_now]);
@@ -54,7 +53,7 @@ class BarangController extends Controller
                     $key => 'nullable|image'
                 ]);
                 if($request->$key != NULL){
-                    $path = '/public/img/';
+                    $path = '/storage/img/';
                     $filename = md5($request->file($key)->getClientOriginalName()).'-'.date('Ymdhis').'.'.$request->file($key)->getClientOriginalExtension();
                     array_push($file_sent, [
                         'gambar_barang_id' => $id,
@@ -62,7 +61,7 @@ class BarangController extends Controller
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s'),
                     ]);
-                    $request->file($key)->storeAs($path, $filename);
+                    $request->file($key)->storeAs('public/img/', $filename);
                 }
             }
         }

@@ -15,7 +15,6 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        // dd(Auth::user());
         if(!is_null(Auth::user())){
             if (Auth::user()->user_role == 'karyawan') {
                 return redirect('karyawan');

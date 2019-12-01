@@ -60,6 +60,11 @@ Route::prefix('admin')->middleware('isAdmin')->group(function()
     Route::post('/barang/edit/post/{id}', 'BarangController@edit_post');
 
     Route::get('/barang/delete/{id}', 'BarangController@delete_post');
+
+    Route::get('/stok', 'StokController@view');
+    Route::post('/stok/post', 'StokController@add');
+
+    // Route::get('/kasir', 'KasirController@view');
 });
 
 Route::prefix('karyawan')->middleware('isKaryawan')->group(function()

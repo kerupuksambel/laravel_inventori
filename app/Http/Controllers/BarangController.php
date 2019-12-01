@@ -27,22 +27,48 @@ class BarangController extends Controller
 
     public function create_post(Request $request)
     {
-        $request = $request->validate([
-            'barang_nama' => 'required|unique:barang',
+        // dd($request);   
+
+        $req = $request->validate([
+            'barang_nama' => 'required',
             'barang_harga' => 'required|numeric',
             'barang_stok' => 'required|numeric'
         ]);
 
         $sent = [
-            'barang_nama' => $request['barang_nama'],
-            'barang_harga' => $request['barang_harga'],
-            'barang_stok' => $request['barang_stok'],
+            'barang_nama' => $req['barang_nama'],
+            'barang_harga' => $req['barang_harga'],
+            'barang_stok' => $req['barang_stok'],
             'barang_creator_id' => Auth::user()->id,
-            'created_at' => date('Y-m-d h:i:s'),
-            'updated_at' => date('Y-m-d h:i:s'),
-        ];
-        
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]; 
         Barang::create($sent);
+        $id = Barang::latest('barang_id')->first()->barang_id;
+        
+        $file_sent = array();
+        
+        foreach($request->all() as $key => $r){
+            if(preg_match('/(?<name>\w+)-(?<digit>\d+)/', $key, $matches)){
+                $request->validate([
+                    $key => 'nullable|image'
+                ]);
+                if($request->$key != NULL){
+                    $path = '/public/img/';
+                    $filename = md5($request->file($key)->getClientOriginalName()).'-'.date('Ymdhis').'.'.$request->file($key)->getClientOriginalExtension();
+                    array_push($file_sent, [
+                        'gambar_barang_id' => $id,
+                        'gambar_path' => $path.$filename,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+                    $request->file($key)->storeAs($path, $filename);
+                }
+            }
+        }
+
+        FileBarang::insert($file_sent);
+        
         return redirect('/'.Auth::user()->user_role.'/barang/view')
         ->with('msg', 'Barang sudah ditambahkan.')
         ->with('type', 'primary');
@@ -68,10 +94,8 @@ class BarangController extends Controller
             'barang_harga' => 'numeric'
         ]);
 
-        // dd($request);
-
         $b = Barang::find($id);
-        $b->updated_at = date('Y-m-d h:i:s');
+        $b->updated_at = date('Y-m-d H:i:s');
         if(!is_null($request['barang_nama'])){
             $b->barang_nama = $request['barang_nama'];
         }

@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class FileBarang extends Model
 {
     protected $table = 'gambar_barang';
+    protected $primaryId = 'gambar_id';
 }

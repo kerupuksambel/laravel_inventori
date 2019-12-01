@@ -3,7 +3,7 @@
 @section('title', 'Dashboard - Tambah Barang')
 
 @section('content')
-    <form action="add/post" method="post">
+    <form action="add/post" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         @if ($errors->any())
@@ -36,6 +36,27 @@
                 </div>
             </div>
         </div>
+        <div class="columns is-multiline" id="file-container">
+            <div class="column is-12">
+                <label class="label">Gambar Barang</label>
+            </div>
+            <div class="column is-4 file-container">
+                <div class="file has-name" data-file-id="0">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="file-0">
+                        <span class="file-cta">
+                            <span class="file-label">
+                                Pilih file
+                            </span>
+                        </span>
+                        <span class="file-name" data-file-name="0">Belum ada file terpilih</span>
+                    </label>
+                </div>
+            </div>  
+            <div class="column is-2">
+                <a onclick="addBarang(0)" id="btn-tambah-gbr" class="button">Tambah Gambar</a>
+            </div>
+        </div>
         <input type="submit" value="Tambah Data" class="button is-primary">
     </form>
-@endsection
+    @endsection

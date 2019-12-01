@@ -1,6 +1,12 @@
 <aside class="menu column is-one-quarter" id="sidebar">
     @if (Auth::user()->user_role == 'owner')
         <p class="menu-label">
+            User
+        </p>
+        <ul class="menu-list">
+            <li><a @if (isset($page_now) && $page_now == 'user/view') class='is-active' @endif href="/owner/user/view">Manajemen User</a></li>
+        </ul>
+        <p class="menu-label">
             Barang
         </p>
         <ul class="menu-list">

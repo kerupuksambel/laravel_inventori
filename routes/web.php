@@ -13,10 +13,6 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/')->middleware(['isOwner', 'isAdmin', 'isKaryawan']);
 
 
@@ -49,6 +45,23 @@ Route::prefix('owner')->middleware('isOwner')->group(function()
     Route::post('/barang/edit/post/{id}', 'BarangController@edit_post');
 
     Route::get('/barang/delete/{id}', 'BarangController@delete_post');
+    
+    Route::get('/stok', 'StokController@view');
+    Route::post('/stok/post', 'StokController@add');
+
+    Route::get('/kasir', 'KasirController@view');
+    Route::post ('/kasir/post', 'KasirController@kasir_post');
+
+    Route::get('/user/view', 'UserController@view');
+
+    Route::get('/user/add', 'UserController@create');
+    Route::post('/user/add/post', 'UserController@create_post');
+    
+    Route::get('/user/edit/{id}', 'UserController@edit');
+    Route::post('/user/edit/post/{id}', 'UserController@edit_post');
+
+    Route::get('/user/delete/{id}', 'UserController@delete_post');
+
 });
 
 Route::prefix('admin')->middleware('isAdmin')->group(function()
@@ -68,10 +81,16 @@ Route::prefix('admin')->middleware('isAdmin')->group(function()
     Route::post('/stok/post', 'StokController@add');
 
     Route::get('/kasir', 'KasirController@view');
-    Route::post('/kasir/post', 'KasirController@kasir_post');
+    Route::post ('/kasir/post', 'KasirController@kasir_post');
 });
 
 Route::prefix('karyawan')->middleware('isKaryawan')->group(function()
 {
     Route::get('/','KaryawanController@dashboard');
+    
+    Route::get('/stok', 'StokController@view');
+    Route::post('/stok/post', 'StokController@add');
+
+    Route::get('/kasir', 'KasirController@view');
+    Route::post ('/kasir/post', 'KasirController@kasir_post');
 });

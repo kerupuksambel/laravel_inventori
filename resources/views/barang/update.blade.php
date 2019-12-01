@@ -1,6 +1,6 @@
 @extends('template.dashboard')
 
-@section('title', 'Dashboard - Tambah Barang')
+@section('title', 'Dashboard - Edit Barang')
 
 @section('content')
     <form action="../edit/post/{{ $barang->barang_id }}" method="post">

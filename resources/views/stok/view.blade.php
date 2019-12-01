@@ -1,6 +1,6 @@
 @extends('template.dashboard')
 
-@section('title', 'Dashboard - List Barang')
+@section('title', 'Dashboard - Tambah Stok')
 
 @section('content')
     <h2 class="title">Tambah Stok</h2>

@@ -26,7 +26,7 @@
                 <td>{{ $record->barang_stok }}</td>
                 <td>
                     @foreach ($record->gambar as $r)
-                        <img src="{{ $r['gambar_path'] }}"/>
+                        <img style="width: 200px" src="{{ $r['gambar_path'] }}"/>
                     @endforeach
                 </td>
                 <td><a href='edit/{{ $record->barang_id }}'>Edit</a> | <a href='delete/{{ $record->barang_id }}'>Hapus</a></td>
